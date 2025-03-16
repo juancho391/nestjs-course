@@ -12,7 +12,15 @@ import { UsersService } from './services/users/users.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, ProductsController, CategoriesController, UsersController, BrandController, OrderController, CustomerController],
+  controllers: [
+    AppController,
+    ProductsController,
+    CategoriesController,
+    UsersController,
+    BrandController,
+    OrderController,
+    CustomerController,
+  ],
   providers: [AppService, ProductsService, UsersService],
 })
 export class AppModule {}
