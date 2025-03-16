@@ -14,6 +14,7 @@ import {
 import { Product } from 'src/entities/product.entity';
 import { ParseIntPipe } from 'src/common/parse-int/parse-int.pipe';
 import { ProductsService } from 'src/services/products/products.service';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -48,7 +49,7 @@ export class ProductsController {
   //Metodo post
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  createProduct(@Body() payload: { name: string; price: number }): any {
+  createProduct(@Body() payload: CreateProductDto): any {
     // return {
     //   message: 'Product Created',
     //   payload,
@@ -61,7 +62,7 @@ export class ProductsController {
   @HttpCode(HttpStatus.ACCEPTED)
   updateProduct(
     @Param('id', ParseIntPipe) id: number,
-    @Body() payload: { name: string; price: number },
+    @Body() payload: UpdateProductDto,
   ): any {
     // return {
     //   message: 'Product Updated',
