@@ -9,6 +9,7 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { Product } from 'src/entities/product.entity';
 
@@ -35,13 +36,13 @@ export class ProductsController {
 
   //Asi recibimos un parametro
   @Get('/:id')
-  getProduct(@Param('id') id: string): Product | boolean {
+  getProduct(@Param('id', ParseIntPipe) id: number): Product | boolean {
     // return `Product with id: ${id}`;
-    const product = this.productsService.findOne(parseInt(id));
+    const product = this.productsService.findOne(id);
     if (product === false) {
       return false;
     }
-    return this.productsService.findOne(parseInt(id));
+    return this.productsService.findOne(id);
   }
 
   //Metodo post
@@ -59,7 +60,7 @@ export class ProductsController {
   @Put('/:id')
   @HttpCode(HttpStatus.ACCEPTED)
   updateProduct(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() payload: { name: string; price: number },
   ): any {
     // return {
@@ -67,13 +68,13 @@ export class ProductsController {
     //   id,
     //   payload,
     // };
-    return this.productsService.update(parseInt(id), payload);
+    return this.productsService.update(id, payload);
   }
 
   //Metodo delete
   @Delete('/:id')
   @HttpCode(HttpStatus.ACCEPTED)
-  deleteProduct(@Param('id') id: string): any {
-    return this.productsService.delete(parseInt(id));
+  deleteProduct(@Param('id', ParseIntPipe) id: number): any {
+    return this.productsService.delete(id);
   }
 }
