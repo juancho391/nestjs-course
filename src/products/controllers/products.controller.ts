@@ -11,10 +11,13 @@ import {
   HttpCode,
   // ParseIntPipe,
 } from '@nestjs/common';
-import { Product } from 'src/entities/product.entity';
+import { Product } from 'src/products/entities/product.entity';
 import { ParseIntPipe } from 'src/common/parse-int/parse-int.pipe';
-import { ProductsService } from 'src/services/products/products.service';
-import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dto';
+import { ProductsService } from 'src/products/services/products.service';
+import {
+  CreateProductDto,
+  UpdateProductDto,
+} from 'src/products/DTOs/products.dto';
 
 @Controller('products')
 export class ProductsController {
