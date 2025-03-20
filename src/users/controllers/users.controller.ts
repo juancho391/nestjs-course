@@ -50,4 +50,10 @@ export class UsersController {
   ): User {
     return this.UsersService.updateUser(id, payload);
   }
+
+  @Get(':id/orders')
+  @HttpCode(HttpStatus.OK)
+  getOrders(@Param('id', ParseIntPipe) id: number) {
+    return this.UsersService.getOrdersByUser(id);
+  }
 }
