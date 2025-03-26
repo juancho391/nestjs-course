@@ -4,14 +4,24 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
-import { HttpModule } from '@nestjs/axios';
-import { HttpService } from '@nestjs/axios';
+import { HttpModule, HttpService } from '@nestjs/axios';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './database/database.module';
 
 const API_KEY = '123456';
 const API_KEY_PROD = '123456789';
 
 @Module({
-  imports: [UsersModule, ProductsModule, HttpModule],
+  imports: [
+    UsersModule,
+    ProductsModule,
+    HttpModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    DatabaseModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,

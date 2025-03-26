@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:14 # Imagen de PostgreSQL
+    container_name: my_postgres_container # Nombre del contenedor
+    environment:
+      POSTGRES_USER: root # Usuario de la base de datos
+      POSTGRES_PASSWORD: 123456 # Contraseña del usuario
+      POSTGRES_DB: my_db # Nombre de la base de datos
+    ports:
+      - '5432:5432' # Exponer el puerto de PostgreSQL
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
